@@ -26,6 +26,8 @@ document.addEventListener('DOMContentLoaded', () =>{
 function consultarCriptomonedas(){
     const url = "https://min-api.cryptocompare.com/data/top/mktcapfull?limit=10&tsym=USD"
     
+    mostrarSpinner();
+
     fetch(url)
      .then(respuesta =>respuesta.json())
      .then(resultado => obtnerCriptomonedas(resultado.Data))
@@ -120,4 +122,18 @@ function limpiarHTML(){
     while(resultado.firstChild){
         resultado.removeChild(resultado.firstChild);
     }
+}
+
+function mostrarSpinner(){
+    limpiarHTML();
+
+    const spinner = document.createElement('div');
+    spinner.classList.add('spinner');
+
+    spinner.innerHTML= `
+      <div class="bounce1"></div>
+      <div class="bounce2"></div>
+      <div class="bounce3"></div>
+    `;
+    resultado.appendChild(spinner);
 }
